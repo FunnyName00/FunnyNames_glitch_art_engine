@@ -36,7 +36,7 @@ def pixelSortBrightness(brightness, pixels, img):
     return img
 
 
-def chomaticAbberation(brightness, pixels, img, rgb_index):
+def chromaticAbberation(brightness, pixels, img, rgb_index):
     channels = list(img.convert('RGB').split())
     
     target_channel = channels[rgb_index]
@@ -111,7 +111,7 @@ def noiseGenerator(img, probability):
     return img
 
 
-img = chomaticAbberation(150, 50, img, 1)
+img = chromaticAbberation(150, 50, img, 1)
 img = exagerateColor(img, 100, 2, 5)
 img = pixelSortBrightness(200, 100, img)
 #img = binarize(img, 100)
