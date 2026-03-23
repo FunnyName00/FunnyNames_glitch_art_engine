@@ -4,7 +4,7 @@ import random
 
 #path = input("Enter the path to the image :\n ")
 
-img = Image.open("Sil80.jpg")
+img = Image.open("image.png")
 
 def pixelSortBrightness(brightness:int, pixels:int, img:Image, rgb:int):
     img = img.convert('RGB')
@@ -80,10 +80,12 @@ def randomPixel(img, probability):
 
 #img = binarize(img, 100)
 
-img = pixelSortBrightness(240, 200, img, 1)
+img = pixelSortBrightness(250, 10, img, 1)
 img = randomPixel(img, 99)
-img = exagerateColor(img, 50, 2, 100)
-img = pixelSortBrightness(240, 200, img, 1)
+img = exagerateColor(img, 50, 2, 10)
+
+img = pixelSortBrightness(100, 50, img, 1)
+
 img.save("result.jpg")
 
 
