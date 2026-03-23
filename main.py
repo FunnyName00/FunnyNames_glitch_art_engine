@@ -140,14 +140,37 @@ def textAlongEdge(img: Image, words: list, threshold: int, spacing: int = 15):
     
     return img
 
+def crossBrightness(img: Image, threshold: int, saturation: float, size: int):
+    img = img.convert('RGB')
+    read_img = img.copy()
+    read_data = read_img.load()
+    write_data = img.load()
+    width, height = img.size
+
+    for x in range(size, width - size):
+        for y in range(size, height - size):
+            r, g, b = read_data[x, y]
+            
+            if (r + g + b) // 3 >= threshold:
+                new_color = tuple(min(255, int(c * saturation)) for c in (r, g, b))
+                
+                write_data[x, y] = new_color
+                
+                for i in range(1, size + 1):
+                    write_data[x + i, y] = new_color # Right
+                    write_data[x - i, y] = new_color # Left
+                    write_data[x, y + i] = new_color # Bottom
+                    write_data[x, y - i] = new_color # Top
+
+    return img
 #img = binarize(img, 100)
 #img = noiseGenerator(img, 10)
-img = chromaticAbberation(150, 50, img, 0)
-img = exagerateColor(img, 100, 2, 5)
-img = pixelSortBrightness(200, 100, img)
-img = textAlongEdge(img, ["Death","Life", "Hate","Joy"], 200)
-
-img = pixelSortBrightness(150, 10, img)
+#img = chromaticAbberation(100, 100, img, 1)
+#img = exagerateColor(img, 100, 2, 5)
+#img = pixelSortBrightness(100, 100, img)
+#img = textAlongEdge(img, ["Death","Life", "Hate","Joy"], 200)
+img = crossBrightness(img, 100, 1.3, 3)
+#img = pixelSortBrightness(120, 10, img)
 
 img.save("result.jpg")
 
