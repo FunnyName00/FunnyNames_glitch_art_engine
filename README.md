@@ -22,9 +22,6 @@ pip install Pillow
 The ActionList class allows you to queue multiple effects and execute them in sequence.
 Python
 
-from PIL import Image
-from ImageModifier import ImageModifier, ActionList
-
 # 1. Load your image
 ```
 img = Image.open("input.png")
