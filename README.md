@@ -1,13 +1,14 @@
 # FunnyName's Glitch Art Engine
 
 A Python-based image manipulation software built using Pillow and Tkinter to create glitch art, pixel sorting, and various image effects.
+
 ## Features
 ### Feature	Description
-Pixel Sorting	Sorts pixels in segments based on brightness thresholds.<br>
-Chromatic Aberration	Simulates lens color fringing by shifting and sorting specific RGB channels.<br>
-Edge-Detection Text	Procedurally places text along the high-contrast edges of an image.<br>
-Binarization	High-speed black and white conversion based on custom thresholds<<br>
-Cross-Brightness	Creates glowing "cross" artifacts on bright pixels.
+Pixel Sorting : Sorts pixels in segments based on brightness thresholds.<br>
+Chromatic Aberration : Simulates lens color fringing by shifting and sorting specific RGB channels.<br>
+Edge-Detection Text : Procedurally places text along the high-contrast edges of an image.<br>
+Binarization : High-speed black and white conversion based on custom thresholds<<br>
+Cross-Brightness : Creates glowing cross artifacts on bright pixels.
 
 ## Installation
 
