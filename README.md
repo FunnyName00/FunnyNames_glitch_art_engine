@@ -48,6 +48,15 @@ processor.execute()
 
 The engine uses Pillow (PIL) to access the pixel buffer directly. Many algorithms in this library utilize a "Threshold + Segment" logic:
 
+## Project Structure
+```
+.
+├── main.py                 # Entry point & example usage
+├── scripts/
+│   ├── ImageModifier.py    # Core static methods for image manipulation
+│   └── executionList.py    # Pipeline management & sequential processing
+└── img/                    # Source images and output directory
+```
 ## Requirements
 
     Python 3.8+
@@ -56,7 +65,6 @@ The engine uses Pillow (PIL) to access the pixel buffer directly. Many algorithm
 
 ## What's next ? 
   
-  - Add a main file
   - Make a user interface (I still gotta chose between CLI and graphic)
   - MORE FUNCTIONNALITIESSSSS
   - MORE GLITCHEEEESSSSSSSS
