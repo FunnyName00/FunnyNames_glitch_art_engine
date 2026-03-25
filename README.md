@@ -42,7 +42,7 @@ processor.execute()
 ```
 ## Example
 
-<img src="/Sil80.jpg" alt="Original" width="45%"/> <img src="/final_result.png" alt="Altered" width="45%"/>
+<img src="img/Sil80.jpg" alt="Original" width="45%"/> <img src="img/final_result.png" alt="Altered" width="45%"/>
 
 ## How It Works
 
