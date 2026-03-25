@@ -1,6 +1,6 @@
 # FunnyName's Glitch Art Engine
 
-A Python-based image manipulation library built on Pillow for creating glitch art, pixel sorting, and procedural image effects.
+A Python-based image manipulation software built using Pillow and Tkinter to create glitch art, pixel sorting, and various image effects.
 ## Features
 ### Feature	Description
 Pixel Sorting	Sorts pixels in segments based on brightness thresholds.<br>
@@ -15,6 +15,7 @@ You need to have Python 3.8+ installed, then install the dependencies using :
 
 ```bash
 pip install Pillow
+pip install Tkinter
 ```
 
 ## Quick Start
@@ -38,7 +39,7 @@ processor.add(ImageModifier.chromaticAbberation, 150, 10, 0)
 ```
 # 4. Execute and save
 ```
-processor.execute()
+processor.execute("final_result.png")
 ```
 ## Example
 
@@ -46,12 +47,13 @@ processor.execute()
 
 ## How It Works
 
-The engine uses Pillow (PIL) to access the pixel buffer directly. Many algorithms in this library utilize a "Threshold + Segment" logic:
+The engine uses Pillow (PIL) to access the image pixels directly. <br> 
+Many algorithms in this program utilize a "Threshold + Segment" logic
 
 ## Project Structure
 ```
 .
-├── main.py                 # Entry point & example usage
+├── main.py                 # Main program with GUI
 ├── scripts/
 │   ├── ImageModifier.py    # Core static methods for image manipulation
 │   └── executionList.py    # Pipeline management & sequential processing
@@ -60,12 +62,12 @@ The engine uses Pillow (PIL) to access the pixel buffer directly. Many algorithm
 ## Requirements
 
     Python 3.8+
-
+    Tkinter
     Pillow (PIL)
 
 ## What's next ? 
   
-  - Make a user interface (I still gotta chose between CLI and graphic)
+  - Better gui to choose the modifiers 
   - MORE FUNCTIONNALITIESSSSS
   - MORE GLITCHEEEESSSSSSSS
   - M̶͔͔̯̆̉̐̑͐͆̌O̶̡͇̫̲͇̖̯͐͌͋͐̍͗͗͗̌R̴͍̀͌͂͂̋̍̅͗̄̕Ȩ̷̡̛̼̩̜̪͕͙͖͈̺̅͂̓́͛̊͊̑̄͋̚ͅͅ ̵̱͙̙̑͌̎̇͠Ģ̵̡͚͍̞͓̭̘͈̩̬̩̪̄ͅL̵̡̢̨̧̻̥̜͎͙͔̦̘̦̔̀̎̌͒͆́̈̈͠͝ͅḬ̷̙̱̮͙̦̜͕̇̍̑͂̀͊͆̅̐̈́̕T̶̙̟̘̟̝͈̖̭̪̺̻͓͈̟̤̆͆̾̈́̈́̇̿̈̂́̆̍͆͘͠Ĉ̸̨̧̲̭͚͎͍̺̘͓̣͓͓̰̾͐̌̌͑̍̓̍̌̿̌̈́ͅH̶̡̤͉̄̑̉̍͊̽̅̍̆͐Ẹ̵̖͔̣͒͗̊̇̓̌̅̀̅̌̌͗̑̾͝S̵̢̧̨̩͈̦̭̰͖͝
