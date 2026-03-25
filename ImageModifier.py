@@ -5,7 +5,6 @@ class ImageModifier:
 
     @staticmethod 
     def pixelSortBrightness(brightness: int, length: int, img) -> Image:
-
         """
         Sorts 'length' number of pixel on y after a pixel's average brightness >= 'brightness'
 
@@ -16,7 +15,6 @@ class ImageModifier:
         Returns:
             Image : result 
         """
-
         img = img.convert('RGB')
         width, height = img.size
         img_data = img.load()
@@ -42,7 +40,6 @@ class ImageModifier:
 
     @staticmethod
     def chromaticAbberation(brightness: int, length: int, rgb_index: int, img: Image) -> Image:
-
         """
         Sorts 'length' number of pixel on y after a pixel's 'rgb_index' brightness >= 'brightness'
 
@@ -54,7 +51,6 @@ class ImageModifier:
         Returns:
             Image : result 
         """
-
         channels = list(img.convert('RGB').split())
         
         target_channel = channels[rgb_index]
@@ -88,7 +84,6 @@ class ImageModifier:
 
     @staticmethod
     def binarize(threshold: int, img: Image) -> Image:
-
         """
         Make pixel black where pixel < threshold and white if pixel > threshold
 
@@ -98,7 +93,6 @@ class ImageModifier:
         Returns:
             Image : result
         """
-
         img = img.convert("L")
         img_data = img.load()
         for x in range(img.width):
@@ -111,7 +105,6 @@ class ImageModifier:
 
     @staticmethod
     def exagerateColor(threshold: int, rgb_index: int, factor: int, img: Image) -> Image:
-
         """
         If pixel > threshold : channel of rgb_index * factor, else color/factor
 
@@ -123,7 +116,6 @@ class ImageModifier:
         Returns:
             Image : result
         """
-
         img=img.convert("RGB")
         img_data = img.load()
         for x in range(img.width):
@@ -144,7 +136,6 @@ class ImageModifier:
 
     @staticmethod
     def noiseGenerator(probability: int, img: Image) -> Image:
-
         """
         Generate noise with probability of probability
 
@@ -154,7 +145,6 @@ class ImageModifier:
         Returns:
             Image : result
         """
-
         img=img.convert("RGB")
         for x in range(img.width):
                 for y in range(img.height):
@@ -169,7 +159,6 @@ class ImageModifier:
 
     @staticmethod
     def edgeDetect(img):
-
         """
         Returns an image with only the edges of the original image
 
@@ -178,7 +167,6 @@ class ImageModifier:
         Returns:
             Image : result
         """
-
         img = img.convert("L")
         img = img.filter(ImageFilter.Kernel((3, 3), (-1, -1, -1, -1, 8,
                                                 -1, -1, -1, -1), 1, 0))
@@ -187,7 +175,6 @@ class ImageModifier:
 
     @staticmethod
     def textAlongEdge(words: list, threshold: int, spacing: int, img):
-
         """
         Write random words from words[] at spacing if pixel's avg brightness < threshold on the edge 
 
@@ -199,7 +186,6 @@ class ImageModifier:
         Returns:
             Image : result
         """
-
         edge = ImageModifier.edgeDetect(img)
         edge_data = edge.load()
         img_data = img.load()
@@ -222,7 +208,6 @@ class ImageModifier:
     
     @staticmethod
     def crossBrightness(threshold: int, saturation: float, size: int, img: Image):
-
         """
         Puts cross where brightness > threshold
 
@@ -234,7 +219,6 @@ class ImageModifier:
         Returns:
             Image : result
         """
-
         img = img.convert('RGB')
         read_img = img.copy()
         read_data = read_img.load()

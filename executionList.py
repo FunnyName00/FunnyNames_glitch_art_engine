@@ -3,13 +3,58 @@ from PIL import Image
 
 
 class ActionList:
-    def __init__(self, image: Image.Image):
+    def __init__(self, image: Image.Image) -> None:
+        """
+        Creates a new pipeline specific to an image
+        
+        Args:
+            image (Image.Image) : Image to be processed with the pipeline 
+        Returns:
+            None
+        
+        """
         self.image = image
         self.pipeline = []
 
-    def add(self, modifier_func, *args):
+    def add(self, modifier_func: function, *args) -> None:
+        """
+        Add a new modifier at the end of the pipeline
+        
+        Args:
+            modifier_func (function) : modifier to be added to the pipline
+            args (multiples) : different arguments for the modifier
+            
+        Returns:
+            None
+        
+        """
         self.pipeline.append((modifier_func, args))
     
+
+    def delete(self, index:int) -> None:
+        """
+        Delete an element of the pipeline
+        
+        Args:
+            index (int) : index of the element to be deleted
+            
+        Returns:
+            None
+        
+        """
+        self.pipeline.pop(index)
+    
+    def swapPlace(self, indexFirst:int, indexSecond:int):
+        """
+        Swap places between 2 elementsin the pipeline
+        
+        Args:
+            indexFirst (int) : index of first element to be swaped
+            indexSecond (int) : index of second element to be swaped
+        Returns:
+            void
+        
+        """
     def execute(self):
         current_img = self.image
         
