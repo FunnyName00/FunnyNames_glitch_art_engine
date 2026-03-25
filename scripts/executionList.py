@@ -60,14 +60,14 @@ class ActionList:
         self.pipeline[indexFirst] = self.pipeline[indexSecond]
         self.pipeline[indexSecond] = temp
 
-    def execute(self, filename: str) -> None:
+    def execute(self, filename: str) -> Image:
         """
         Execute the pipeline in order and save the result
 
         Args:
             filename (str) : name of the final result file
         Returns:
-            None
+            The final image (Image)
 
         """
         current_img = self.image
@@ -79,7 +79,8 @@ class ActionList:
         
         self.image = current_img
         self.image.save(filename)
-
+        return self.image
+    
     def __repr__(self) -> str:
         """
         prints the pipeline 
