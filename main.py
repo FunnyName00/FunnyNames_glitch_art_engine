@@ -23,7 +23,7 @@ class GlitchApp:
         self.sidebar = tk.Frame(self.root, width=220, bg="#2e2e2e")
         self.sidebar.pack(side="left", fill="y", padx=5, pady=5)
 
-        tk.Label(self.sidebar, text="GLITCHES PIPELINE", bg="#2e2e2e", fg="white", font=('Arial', 10, 'bold')).pack(pady=5)
+        tk.Label(self.sidebar, text="FX PIPELINE", bg="#2e2e2e", fg="white", font=('Arial', 10, 'bold')).pack(pady=5)
 
         # Pipeline Display
         self.listbox = tk.Listbox(self.sidebar, height=15, bg="#1e1e1e", fg="white", selectbackground="#4a4a4a")
@@ -86,7 +86,7 @@ class GlitchApp:
                 self.processor.add(ImageModifier.noiseGenerator, val)
                 self.listbox.insert(tk.END, f"Noise ({val}%)")
 
-        elif effect == "Binarize":
+        elif effect == "Binarize":  
             val = simpledialog.askinteger("Binarize", "Threshold (0-255):", initialvalue=128)
             if val is not None:
                 self.processor.add(ImageModifier.binarize, val)
@@ -112,9 +112,17 @@ class GlitchApp:
             self.processor.add(ImageModifier.edgeDetect)
             self.listbox.insert(tk.END, "Edge Detection")
 
-        # elif effect == "Text along edges":
-        #     words = 
-        #     self.processor.add(ImageModifier.textAlongEdge, )
+        elif effect == "Text along edges":
+            input = simpledialog.askstring("Input", "Enter words separated by commas (e.g. Hate, Life, Joy):", initialvalue="GLITCH, ERROR, SYSTEM")
+
+            if input:
+                words_list = [w.strip() for w in input.split(",")]
+                threshold = simpledialog.askinteger("Input", "Edge threshold (0-255):", initialvalue=128)
+                space = simpledialog.askinteger("Input", "Spacing:", initialvalue=20)
+
+                if threshold is not None and space is not None:
+                    self.processor.add(ImageModifier.textAlongEdge, words_list, threshold, space)
+                    self.listbox.insert(tk.END, f"TextEdge ({len(words_list)} words)")
 
     def remove_effect(self):
         selection = self.listbox.curselection()
