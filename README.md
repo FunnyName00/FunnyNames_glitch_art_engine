@@ -7,8 +7,8 @@ A Python-based image manipulation software built using Pillow and Tkinter to cre
 Pixel Sorting : Sorts pixels in segments based on brightness thresholds.<br>
 Chromatic Aberration : Simulates lens color fringing by shifting and sorting specific RGB channels.<br>
 Edge-Detection Text : Procedurally places text along the high-contrast edges of an image.<br>
-Binarization : High-speed black and white conversion based on custom thresholds<<br>
-Cross-Brightness : Creates glowing cross artifacts on bright pixels.
+Binarization : Black and white conversion based on custom thresholds<br>
+Cross-Brightness : Creates glowing cross artifacts on bright pixels. (Not implemented in gui yet)
 
 ## Installation
 
@@ -19,27 +19,34 @@ pip install Pillow
 pip install Tkinter
 ```
 
-## Quick Start
+## Execution
 
-The ActionList class allows you to queue multiple effects and execute them in sequence.
-Python
+The program allows you to queue multiple effects and execute them in sequence.
 
-# 1. Load your image
-```
+1. Load your image
+2. Add your desired effects with your settings
+3. Order them as you wish
+4. Process the image and contemplate your artwork
+
+
+## Fx pipeline logic (without GUI)
+
+### 1. Load your image
+```python
 img = Image.open("input.png")
 ```
-# 2. Initialize the processor
-```
+### 2. Initialize the processor 
+```python
 processor = ActionList(img)
 ```
-# 3. Add your modifiers (Effect, *Args)
-```
+### 3. Add your modifiers (Effect, *Args)
+```python
 processor.add(ImageModifier.binarize, 128) 
 processor.add(ImageModifier.pixelSortBrightness, 100, 30)
 processor.add(ImageModifier.chromaticAbberation, 150, 10, 0)
 ```
-# 4. Execute and save
-```
+### 4. Execute and save
+```python
 processor.execute("final_result.png")
 ```
 ## Example
@@ -68,7 +75,7 @@ Many algorithms in this program utilize a "Threshold + Segment" logic
 
 ## What's next ? 
   
-  - Better gui to choose the modifiers 
+  - Restyle the app, maybe an original artistic
   - MORE FUNCTIONNALITIESSSSS
   - MORE GLITCHEEEESSSSSSSS
   - M̶͔͔̯̆̉̐̑͐͆̌O̶̡͇̫̲͇̖̯͐͌͋͐̍͗͗͗̌R̴͍̀͌͂͂̋̍̅͗̄̕Ȩ̷̡̛̼̩̜̪͕͙͖͈̺̅͂̓́͛̊͊̑̄͋̚ͅͅ ̵̱͙̙̑͌̎̇͠Ģ̵̡͚͍̞͓̭̘͈̩̬̩̪̄ͅL̵̡̢̨̧̻̥̜͎͙͔̦̘̦̔̀̎̌͒͆́̈̈͠͝ͅḬ̷̙̱̮͙̦̜͕̇̍̑͂̀͊͆̅̐̈́̕T̶̙̟̘̟̝͈̖̭̪̺̻͓͈̟̤̆͆̾̈́̈́̇̿̈̂́̆̍͆͘͠Ĉ̸̨̧̲̭͚͎͍̺̘͓̣͓͓̰̾͐̌̌͑̍̓̍̌̿̌̈́ͅH̶̡̤͉̄̑̉̍͊̽̅̍̆͐Ẹ̵̖͔̣͒͗̊̇̓̌̅̀̅̌̌͗̑̾͝S̵̢̧̨̩͈̦̭̰͖͝

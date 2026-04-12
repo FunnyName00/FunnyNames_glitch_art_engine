@@ -161,7 +161,7 @@ class GlitchApp:
 
     def run_task(self):
         
-        result = self.processor.execute("final_output.png")
+        result = self.processor.execute("img/final_result.png")
         
         self.root.after(0, self.finalize_render, result)
 
