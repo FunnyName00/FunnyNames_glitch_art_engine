@@ -103,7 +103,7 @@ class GlitchApp:
         elif effect == "Chromatic":
             threshold = simpledialog.askinteger("Chromatic Abberation", "Threshold (0-255):", initialvalue=128)
             trail = simpledialog.askinteger("Chromatic Abberation", "Trail Length (0-200):", initialvalue=20)
-            rgb_index = simpledialog.askinteger("Chromatic Abberation", "RGB Index (0: Red, 1: Blue, 2: Green):", initialvalue=0)
+            rgb_index = simpledialog.askinteger("Chromatic Abberation", "RGB Index (0:Red, 1:Green, 2:Blue):", initialvalue=0)
             if threshold != None and trail != None and rgb_index != None:
                 self.processor.add(ImageModifier.chromaticAbberation, threshold, trail, rgb_index)
                 self.listbox.insert(tk.END, f"Chromatic Abberation ({threshold}, {trail}, {rgb_index})")
@@ -147,14 +147,14 @@ class GlitchApp:
         
         self.btn_run.config(state="disabled", text="Processing...")
         
-        # Run in thread to prevent UI freezing
+        
         thread = threading.Thread(target=self.run_task)
         thread.start()
 
     def run_task(self):
-        # The execute method returns the final PIL image
+        
         result = self.processor.execute("final_output.png")
-        # Use .after to update the UI from the main thread
+        
         self.root.after(0, self.finalize_render, result)
 
     def finalize_render(self, result):
@@ -162,7 +162,7 @@ class GlitchApp:
         self.btn_run.config(state="normal", text="2. RUN PIPELINE")
 
     def update_canvas(self, pil_img):
-        # Create a copy for display so we don't mess with the original size
+      
         display_copy = pil_img.copy()
         display_copy.thumbnail((600, 400))
         self.display_img = ImageTk.PhotoImage(display_copy)
