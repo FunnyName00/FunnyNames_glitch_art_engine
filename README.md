@@ -74,7 +74,9 @@ Many algorithms in this program utilize a "Threshold + Segment" logic
     Pillow (PIL)
 
 ## What's next ? 
-  
+
+  - Reset image button
+  - Fx chain presets
   - Restyle the app, maybe an original artistic direction
   - MORE FUNCTIONNALITIESSSSS
   - MORE GLITCHEEEESSSSSSSS
