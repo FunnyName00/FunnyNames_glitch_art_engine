@@ -41,7 +41,14 @@ class GlitchApp:
         tk.Label(self.sidebar, text="Add Effect:", bg="#2e2e2e", fg="#aaaaaa").pack(pady=(15, 0))
         self.effect_var = tk.StringVar()
         self.effect_menu = ttk.Combobox(self.sidebar, textvariable=self.effect_var, state="readonly")
-        self.effect_menu['values'] = ("Noise", "Binarize", "Pixel Sort", "Chromatic", "Edge Detect", "Text along edges", "Crosses along edges")
+        self.effect_menu['values'] = ("Noise"
+                                      , "Binarize"
+                                      , "Pixel Sort"
+                                      , "Chromatic"
+                                      , "Edge Detect"
+                                      , "Text along edges"
+                                      , "Crosses along edges"
+                                      , "Exagerate color")
         self.effect_menu.pack(fill="x", padx=10, pady=5)
         
         tk.Button(self.sidebar, text="Add to List", command=self.add_effect_ui).pack(fill="x", padx=10, pady=5)
@@ -113,7 +120,8 @@ class GlitchApp:
             self.listbox.insert(tk.END, "Edge Detection")
 
         elif effect == "Text along edges":
-            input = simpledialog.askstring("Input", "Enter words separated by commas (e.g. Hate, Life, Joy):", initialvalue="GLITCH, ERROR, SYSTEM")
+            input = simpledialog.askstring("Input", "Enter words separated by commas (e.g. Hate, Life, Joy):"\
+                                           , initialvalue="GLITCH, ERROR, SYSTEM")
 
             if input:
                 words_list = [w.strip() for w in input.split(",")]
@@ -126,12 +134,21 @@ class GlitchApp:
 
         elif effect == "Crosses along edges":
             threshold = simpledialog.askinteger("Cross", "Threshold (0-255):", initialvalue=128)
-            saturation = simpledialog.askfloat("Cross", "Saturation (0-1):", initialvalue=0.2)
-            size = simpledialog.askinteger("Cross", "Size (0-255):", initialvalue=1)
+            saturation = simpledialog.askfloat("Cross", "Saturation (1-2):", initialvalue=1.2)
+            size = simpledialog.askinteger("Cross", "Size (0-255):", initialvalue=5)
             if threshold is not None and saturation is not None and size is not None:
                 self.processor.add(ImageModifier.crossBrightness, threshold, saturation, size)
                 self.listbox.insert(tk.END, f"Crosses ({threshold}, {saturation}, {size})")
 
+        elif effect == "Exagerate color":
+            threshold = simpledialog.askinteger("Color", "Threshold (0-255):", initialvalue=128, minvalue=0, maxvalue=255)
+            rgb_index = simpledialog.askinteger("Color", "RGB index (0:Red, 1:Green, 2:Blue):", initialvalue=0, minvalue=0, maxvalue=2)
+            factor = simpledialog.askinteger("Color", "Multiply factor(0-10):", initialvalue=3, minvalue=0, maxvalue=10)
+            if threshold is not None and rgb_index is not None and factor is not None:
+
+                self.processor.add(ImageModifier.exagerateColor, threshold, rgb_index, factor)
+                self.listbox.insert(tk.END, f"Color exagerate ({threshold}, {rgb_index}, {factor})")
+                
     def remove_effect(self):
         selection = self.listbox.curselection()
         if selection:

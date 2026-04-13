@@ -116,24 +116,16 @@ class ImageModifier:
         Returns:
             Image : result
         """
-        img=img.convert("RGB")
-        img_data = img.load()
-        for x in range(img.width):
-                for y in range(img.height):
-                    pixel = img_data[x, y]
-                    
-                    if pixel[rgb_index]< threshold:
-                        li = list(pixel) 
-                        li[rgb_index] //= factor
-                        pixel = tuple(li)
-                        img.putpixel( (x,y), pixel )
-                    if pixel[rgb_index] > threshold:
-                        li = list(pixel) 
-                        li[rgb_index] *= factor
-                        pixel = tuple(li)
-                        img.putpixel( (x,y), pixel)
-        return img
-
+        img = img.convert("RGB")
+    
+        bands = list(img.split())
+        
+        lookup = lambda v: min(255, v * factor) if v > threshold else v // factor
+        
+        bands[rgb_index] = bands[rgb_index].point(lookup)
+        
+        return Image.merge("RGB", bands)
+    
     @staticmethod
     def noiseGenerator(probability: int, img: Image) -> Image:
         """
