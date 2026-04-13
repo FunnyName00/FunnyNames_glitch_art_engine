@@ -8,7 +8,7 @@ from fxRegister import *
 import threading
         
 class EffectSidebar(tk.Frame):
-    def __init__(self, parent, on_add, on_remove, on_up, on_reset):
+    def __init__(self, parent, on_add, on_remove, on_up, on_reset, on_down):
         super().__init__(parent, width=220, bg="#2e2e2e")
         self.pack(side="left", fill="y", padx=5, pady=5)
         
@@ -17,6 +17,7 @@ class EffectSidebar(tk.Frame):
         self.on_remove = on_remove
         self.on_up = on_up
         self.on_reset = on_reset
+        self.on_down = on_down
 
         self._setup_widgets()
 
@@ -32,6 +33,7 @@ class EffectSidebar(tk.Frame):
         btn_frame.pack(fill="x", padx=10)
         
         tk.Button(btn_frame, text="↑ Up", command=self.on_up).pack(side="left", expand=True)
+        tk.Button(btn_frame, text="🠇 Down", command=self.on_down).pack(side="left", expand=True)
         tk.Button(btn_frame, text="Remove", command=self.on_remove).pack(side="left", expand=True)
         tk.Button(btn_frame, text="Reset", command=self.on_reset).pack(side="left", expand=True)
 
@@ -78,7 +80,8 @@ class GlitchApp:
             on_add=self.add_effect_ui, 
             on_remove=self.remove_effect, 
             on_up=self.move_up, 
-            on_reset=self.reset_pipeline
+            on_reset=self.reset_pipeline,
+            on_down=self.move_down
         )
         
         self.main_area = tk.Frame(self.root)
@@ -139,6 +142,19 @@ class GlitchApp:
             self.sidebar.remove_effect(idx)
             self.sidebar.insert_effect(text, idx - 1)
             self.sidebar.listbox.select_set(idx - 1)
+
+    def move_down(self):
+        idx = self.sidebar.get_selected_index()
+        last_idx = self.sidebar.listbox.size() - 1
+        
+        if idx is not None and idx < last_idx:
+            self.processor.swapPlace(idx, idx + 1)
+            
+            text = self.sidebar.listbox.get(idx)
+            self.sidebar.remove_effect(idx)
+            self.sidebar.insert_effect(text, idx + 1)
+            
+            self.sidebar.listbox.select_set(idx + 1)
 
     def reset_pipeline(self):
         if self.original_img:
