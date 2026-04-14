@@ -62,6 +62,7 @@ Many algorithms in this program utilize a "Threshold + Segment" logic
 ```
 .
 ├── main.py                 # Main program with GUI
+├── fxRegister.py           # Effects dictionnary
 ├── scripts/
 │   ├── ImageModifier.py    # Core static methods for image manipulation
 │   └── executionList.py    # Pipeline management & sequential processing
@@ -75,7 +76,6 @@ Many algorithms in this program utilize a "Threshold + Segment" logic
 
 ## What's next ? 
 
-  - Reset image button
   - Fx chain presets
   - Restyle the app, maybe an original artistic direction
   - MORE FUNCTIONNALITIESSSSS
