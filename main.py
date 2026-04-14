@@ -90,8 +90,12 @@ class GlitchApp:
         self._setup_main_canvas()
 
     def _setup_main_canvas(self):
+
         self.btn_load = tk.Button(self.main_area, text="1. Load Image", command=self.load_image)
         self.btn_load.pack(pady=10)
+
+        self.btn_reset_image = tk.Button(self.main_area, text="Reset Image", command=self.reset_image)
+        self.btn_reset_image.pack(pady=10)
 
         self.canvas = tk.Canvas(self.main_area, width=600, height=400, bg="gray")
         self.canvas.pack(padx=10, pady=5)
@@ -158,10 +162,14 @@ class GlitchApp:
 
     def reset_pipeline(self):
         if self.original_img:
-            self.processor = ActionList(self.original_img)
+            #self.processor = ActionList(self.original_img)
             self.sidebar.clear()
-            self.update_canvas(self.original_img)
+            # self.update_canvas(self.original_img)
 
+    def reset_image(self):
+        if self.original_img:
+            self.processor = ActionList(self.original_img)
+            self.update_canvas(self.original_img)
 
     def process_image(self):
         if not self.processor or not self.original_img:
