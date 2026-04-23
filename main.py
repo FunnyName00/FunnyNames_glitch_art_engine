@@ -168,7 +168,7 @@ class GlitchApp:
 
     def reset_image(self):
         if self.original_img:
-            self.processor = ActionList(self.original_img)
+            #self.processor = ActionList(self.original_img)
             self.update_canvas(self.original_img)
 
     def process_image(self):
