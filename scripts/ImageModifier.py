@@ -234,3 +234,28 @@ class ImageModifier:
 
         return img
     
+    @staticmethod
+    def create_gradient(size, start_color, end_color, direction='vertical'):
+        gradient = Image.new('RGBA', size)
+        draw = ImageDraw.Draw(gradient)
+
+        if direction == 'vertical':
+            for y in range(size[1]):
+                r = int(start_color[0] * (1 - y / size[1]) + end_color[0] * (y / size[1]))
+                g = int(start_color[1] * (1 - y / size[1]) + end_color[1] * (y / size[1]))
+                b = int(start_color[2] * (1 - y / size[1]) + end_color[2] * (y / size[1]))
+                a = int(start_color[3] * (1 - y / size[1]) + end_color[3] * (y / size[1]))
+                draw.line([(0, y), (size[0], y)], fill=(r, g, b, a))
+        return gradient
+
+    @staticmethod
+    def apply_gradient_overlay(img: Image):
+        base_image = img.convert("RGBA")
+        width, height = base_image.size
+
+        # Create a black to transparent gradient
+        gradient = ImageModifier.create_gradient((width, height), (0, 0, 0, 0), (0, 0, 0, 200))
+
+        # Composite the gradient over the image
+        combined = Image.alpha_composite(base_image, gradient)
+        return combined

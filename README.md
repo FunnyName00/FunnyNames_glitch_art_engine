@@ -61,12 +61,14 @@ Many algorithms in this program utilize a "Threshold + Segment" logic
 ## Project Structure
 ```
 .
-├── main.py                 # Main program with GUI
-├── fxRegister.py           # Effects dictionnary
+├── main.py                   # Main program with GUI
+├── fxRegister.py             # Effects dictionnary
 ├── scripts/
-│   ├── ImageModifier.py    # Core static methods for image manipulation
-│   └── executionList.py    # Pipeline management & sequential processing
-└── img/                    # Source images and output directory
+│   ├── ImageModifier.py      # Core static methods for image manipulation
+│   └── executionList.py      # Pipeline management & sequential processing
+├── tests/
+│   ├── ImageModifierTest.py  # Simple to use code sequence
+└── img/                      # Source images and output directory
 ```
 ## Requirements
 
